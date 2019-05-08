@@ -15,7 +15,8 @@ public class BookSample {
     private Long id;
     private String title;
     private String isbn;
-    private String publisher;
+    @OneToOne
+    private PublisherSample publisher;
 
     @ManyToMany
     @JoinTable(name="author_book_sample", joinColumns = @JoinColumn(name = "book_id"),
@@ -25,13 +26,13 @@ public class BookSample {
     public BookSample() {
     }
 
-    public BookSample(String title, String isbn, String publisher) {
+    public BookSample(String title, String isbn, PublisherSample publisher) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
     }
 
-    public BookSample(String title, String isbn, String publisher, Set<AuthorSample> authorSampleSet) {
+    public BookSample(String title, String isbn, PublisherSample publisher, Set<AuthorSample> authorSampleSet) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
@@ -54,11 +55,11 @@ public class BookSample {
         this.isbn = isbn;
     }
 
-    public String getPublisher() {
+    public PublisherSample getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(PublisherSample publisher) {
         this.publisher = publisher;
     }
 
